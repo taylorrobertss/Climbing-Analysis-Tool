@@ -12,6 +12,7 @@ streamlit = "*"
 matplotlib = "*"
 streamlit-image-coordinates = "*"
 blinker = "*"
+imageio-ffmpeg = "*"
 
 [dev-packages]
 

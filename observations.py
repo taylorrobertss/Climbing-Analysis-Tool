@@ -72,7 +72,7 @@ def observe(m):
             "convention", "low"))
     return obs
 
-def compare(prev, curr, tol=0.15):
+def compare(prev, curr, tol=0.10):
     """Attempt-to-attempt changes are usually more meaningful than absolute thresholds."""
     notes = []
     for key, label, better in [("gie", "Path entropy (GIE)", "lower"),
