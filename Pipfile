@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+mediapipe = "==0.10.14"
+opencv-python = "*"
+numpy = "*"
+scipy = "*"
+streamlit = "*"
+matplotlib = "*"
+streamlit-image-coordinates = "*"
+blinker = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
