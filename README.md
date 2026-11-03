@@ -1,40 +1,7 @@
 # Climbing Beta Analyser: Sources and Evidence
 
 
-## 1. How to read this document
-
-Each source has a **recall confidence**. It describes how sure I am that the paper exists and that I have the citation roughly right. It is **not** a rating of whether the paper supports how the tool uses it.
-
-| Confidence | Meaning |
-|---|---|
-| High | I am confident the work exists and the details are about right. |
-| Medium | I am confident a paper on this topic exists. The exact title, year or journal may be off. |
-| Low | I remember the research area, not a specific paper. Search for it. |
-
-The **Verified?** column is blank on purpose. Fill it in as you check each one.
-
----
-
-## 2. Technical building blocks
-
-| Component | Where it comes from | Recall | Verified? |
-|---|---|---|---|
-| Pose tracking | Bazarevsky, Grishchenko, Raveendran, Zhu, Zhang, Grundmann (2020). *BlazePose: On-device Real-time Body Pose Tracking.* arXiv:2006.10204. This is the model behind MediaPipe Pose (33 landmarks). | High | |
-| MediaPipe framework | Lugaresi et al. (2019). *MediaPipe: A Framework for Building Perception Pipelines.* arXiv:1906.08172. | High | |
-| Smoothing filter | Savitzky and Golay (1964). *Analytical Chemistry*, 36(8), 1627-1639. Used for smoothing and for velocity and jerk derivatives. | High | |
-| Centre-of-mass segment weights | Dempster (1955), as tabulated in Winter, *Biomechanics and Motor Control of Human Movement* (4th ed., 2009, Wiley). | High for the source, Medium for exact values | |
-
-**How the tool departs from the source (centre of mass):**
-- Segment centres are taken as simple midpoints between joints. Published tables use proximal and distal fractions.
-- The trunk is the mean of four landmarks.
-- Hands and feet are folded into the forearm and shank weights.
-- Everything is computed from **2D** image coordinates.
-
-The result is a rough proxy for the centre of mass, not a lab-grade estimate.
-
----
-
-## 3. Climbing-movement metrics
+## 1. Climbing-movement metrics
 
 ### Path entropy (GIE) in `metrics.py`
 - Cordier, Mendes France, Pailhous and Bolon (1994). *Entropy as a global variable of the learning process.* Human Movement Science. **Recall: Medium.**
@@ -76,7 +43,7 @@ The result is a rough proxy for the centre of mass, not a lab-grade estimate.
 
 ---
 
-## 4. Tool rules and their evidence status
+## 2. Tool rules and their evidence status
 
 | Rule / feature | Where | What supports it | Honest status | Suggested tag |
 |---|---|---|---|---|
@@ -94,7 +61,7 @@ The result is a rough proxy for the centre of mass, not a lab-grade estimate.
 
 ---
 
-## 5. Parameters with no source
+## 3. Parameters with no source
 
 These are placeholders chosen by me. They are **not** published thresholds:
 
@@ -110,7 +77,7 @@ Calibrate them against your own footage and against clips labelled by a coach yo
 
 ---
 
-## 6. Limits that apply to every result
+## 4. Limits that apply to every result
 
 - All measurements come from **2D video**. Elbow angles, hip distance and reach all suffer from foreshortening when limbs point toward the camera.
 - There is **no hold detection**, so "loaded hand" and "planted foot" are guesses based on stillness and height.
@@ -119,7 +86,7 @@ Calibrate them against your own footage and against clips labelled by a coach yo
 
 ---
 
-## 7. Verification checklist
+## 5. Verification checklist
 
 1. Search Google Scholar, PubMed or the journal sites for each entry in Sections 2 and 3. Record the correct title, year, DOI and what the paper actually concluded.
 2. Check the three claims that drive the most output first: the bent-arm rule, the immobility rule and the GIE interpretation.
@@ -127,15 +94,3 @@ Calibrate them against your own footage and against clips labelled by a coach yo
 4. Add the DOI next to each source in this file. Replace the blank "Verified?" cells with the date and your initials.
 5. Re-check the dimensionless-jerk formula in `metrics.py` against Hogan and Sternad (2009) or Balasubramanian et al. (2015).
 
-## 8. Suggested search terms
-
-- `"geometric index of entropy" climbing`
-- `Cordier entropy climbing learning`
-- `jerk fluency climbing Seifert`
-- `centre of mass rock climbing Zampagni` / `Sibella`
-- `route preview indoor climbing Sanchez`
-- `immobility time climbing route finding`
-- `forearm oxygenation sustained contraction climbers`
-- `Quaine Martin equilibrium rock climbing`
-- `determinants of success in climbing systematic review`
-- `BlazePose on-device real-time body pose tracking`
